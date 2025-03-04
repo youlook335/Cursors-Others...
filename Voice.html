@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .voice-button {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            overflow: hidden;
+        }
+        .voice-button i {
+            font-size: 32px;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        .voice-button::before,
+        .voice-button::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(63, 94, 251, 0.5);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(1);
+        }
+        .voice-button:hover::before {
+            animation: soundWave 1.5s infinite ease-out;
+        }
+        .voice-button:hover::after {
+            animation: soundWave 1.5s 0.5s infinite ease-out;
+        }
+        @keyframes soundWave {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="navigate('home')">Home</a></li>
+            <li><a href="#" onclick="navigate('about')">About</a></li>
+            <li><a href="#" onclick="navigate('contact')">Contact</a></li>
+            <li><a href="#" onclick="navigate('projects')">Projects</a></li>
+        </ul>
+    </nav>
+    <div id="content"></div>
+    
+    <div class="voice-button" id="voiceButton">
+        <i class="fas fa-microphone"></i>
+    </div>
+    
+    <audio id="voiceSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    <script 5399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script>
+        function navigate(page) {
+            document.getElementById("content").innerHTML = `<h2>${page.charAt(0).toUpperCase() + page.slice(1)}</h2>`;
+        }
+        
+        document.getElementById("voiceButton").addEventListener("mouseenter", function() {
+            document.getElementById("voiceSound").play();
+        });
+    </script>
+</body>
+</html>

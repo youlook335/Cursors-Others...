@@ -1,0 +1,62 @@
+<!-- Drawing Cursor -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Cursor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #111; cursor: none; }
+        canvas { position: absolute; top: 0; left: 0; }
+    </style>
+</head>
+<body>
+    <canvas id="drawingCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById("drawingCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        document.addEventListener("mousemove", (e) => {
+            ctx.fillStyle = "#ff0";
+            ctx.beginPath();
+            ctx.arc(e.clientX, e.clientY, 3, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    </script>
+</body>
+</html>
+
+<!-- Custom Shape Cursor -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Shape Cursor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: #111; }
+        .cursor {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Star-filled.svg/1024px-Star-filled.svg.png');
+            background-size: cover;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <script>
+        const cursor = document.querySelector(".cursor");
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+    </script>
+</body>
+</html>

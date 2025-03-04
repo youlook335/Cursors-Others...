@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Cards</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            position: relative;
+            width: 250px;
+            height: 100px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: height 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .card:hover {
+            height: 200px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card-content {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover .card-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        .card-text {
+            color: #4b5563;
+            margin: 10px;
+        }
+        .card-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="cardContainer"></div>
+    
+    <script>
+        const colors = ["orange", "purple", "green"];
+        const container = document.getElementById("cardContainer");
+
+        colors.forEach((color, index) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.style.borderTop = `4px solid ${color}`;
+
+            const title = document.createElement("h2");
+            title.classList.add("card-title");
+            title.style.color = color;
+            title.innerText = "Title";
+
+            const content = document.createElement("div");
+            content.classList.add("card-content");
+
+            const text = document.createElement("p");
+            text.classList.add("card-text");
+            text.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+
+            const badge = document.createElement("div");
+            badge.classList.add("card-badge");
+            badge.style.backgroundColor = color;
+            badge.innerText = index + 1;
+
+            content.appendChild(text);
+            card.appendChild(title);
+            card.appendChild(content);
+            card.appendChild(badge);
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
